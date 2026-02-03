@@ -1,5 +1,7 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { JWT } from "next-auth/jwt";
+import { Session, User } from "next-auth";
 
 export const authOptions = {
   providers: [
@@ -15,7 +17,6 @@ export const authOptions = {
           return null;
         }
 
-        // Call FastAPI backend
         const res = await fetch("http://localhost:8000/auth/login", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -31,14 +32,12 @@ export const authOptions = {
 
         const data = await res.json();
 
-        // FastAPI returns: { access_token, token_type }
         if (!data.access_token) {
           return null;
         }
 
-        // Return user object to NextAuth
         return {
-          id: credentials.email, // or backend user_id if you return it
+          id: credentials.email,
           email: credentials.email,
           accessToken: data.access_token
         };
@@ -47,15 +46,29 @@ export const authOptions = {
   ],
 
   callbacks: {
-    async jwt({ token, user }) {
-      if (user) {
+    async jwt({
+      token,
+      user
+    }: {
+      token: JWT & { accessToken?: string };
+      user?: User & { accessToken?: string };
+    }) {
+      if (user?.accessToken) {
         token.accessToken = user.accessToken;
       }
       return token;
     },
 
-    async session({ session, token }) {
-      session.accessToken = token.accessToken;
+    async session({
+      session,
+      token
+    }: {
+      session: Session & { accessToken?: string };
+      token: JWT & { accessToken?: string };
+    }) {
+      if (token.accessToken) {
+        session.accessToken = token.accessToken;
+      }
       return session;
     }
   },
