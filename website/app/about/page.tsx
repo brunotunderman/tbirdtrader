@@ -45,10 +45,10 @@ export default function AboutPage() {
         <section className="flex flex-col md:flex-row gap-8 items-start">
           <div className="w-full md:w-48 flex-shrink-0">
             <Image
-              src="/bruno_new.jpg"
+              src="/bruno_new2.jpg"
               alt="Bruno Tunderman"
               width={180}
-              height={180}
+              height={319}
               className="rounded-lg border border-[#30363d] object-cover"
             />
           </div>
