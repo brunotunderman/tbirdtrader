@@ -191,7 +191,7 @@ export default function HomePage() {
           {/* Image BELOW the text */}
           <div className="rounded-xl overflow-hidden border border-[#30363d] bg-[#0d1117]">
             <Image
-              src="/traderbot2.png"
+              src="/Traderbot2.png"
               alt="TbirdTrader Bot Interface"
               width={1600}
               height={1200}
