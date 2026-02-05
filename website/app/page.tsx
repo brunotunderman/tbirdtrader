@@ -16,11 +16,10 @@ export default function HomePage() {
         </a>
       </header>
 
-
-
       {/* HERO */}
       <section className="relative overflow-hidden border-b border-[#30363d] bg-gradient-to-b from-[#0d1117] to-[#161b22]">
         <div className="mx-auto flex max-w-6xl flex-col items-center gap-12 px-6 py-20 md:flex-row md:py-28">
+
           {/* Left: Text */}
           <div className="flex-1 space-y-6">
             <div className="flex items-center gap-3">
@@ -50,26 +49,30 @@ export default function HomePage() {
               <button className="rounded-md bg-gradient-to-r from-[#1e90ff] to-[#00b4ff] px-6 py-2 text-sm font-medium text-white shadow-lg shadow-[#1e90ff55] hover:opacity-90">
                 Ready to trade with confidence
               </button>
-              <button className="rounded-md border border-[#30363d] px-6 py-2 text-sm font-medium text-[#c9d1d9] hover:bg-[#161b22]">
-                View Dashboard
-              </button>
             </div>
           </div>
 
-          {/* Right: Mockup placeholder */}
+          {/* Right: PNG Chart Preview */}
           <div className="flex-1">
-            <div className="relative mx-auto h-64 w-full max-w-md rounded-xl border border-[#30363d] bg-[#0d1117] p-4 shadow-[0_0_60px_rgba(30,144,255,0.35)]">
+            <div className="relative mx-auto w-full max-w-md rounded-xl border border-[#30363d] bg-[#0d1117] p-4 shadow-[0_0_60px_rgba(30,144,255,0.35)]">
               <div className="mb-3 flex items-center justify-between text-xs text-[#8b949e]">
                 <span>BTC / EUR</span>
                 <span>AI Prediction Overlay</span>
               </div>
-              <div className="h-[180px] rounded-md bg-gradient-to-b from-[#161b22] to-[#0d1117]">
-                <div className="flex h-full items-center justify-center text-xs text-[#30363d]">
-                  Candlestick Chart Preview
-                </div>
+
+              <div className="rounded-md overflow-hidden border border-[#30363d] bg-[#0d1117]">
+                <Image
+                  src="/candlestick Tbirdtrader.png"
+                  alt="Candlestick Chart Preview"
+                  width={1200}
+                  height={700}
+                  className="w-full h-auto"
+                  priority
+                />
               </div>
             </div>
           </div>
+
         </div>
       </section>
 
@@ -83,6 +86,9 @@ export default function HomePage() {
             <p className="mt-3 text-sm text-[#8b949e] md:text-base">
               TbirdTrader combines AI‑driven algorithms, robust backtesting, and
               secure automation to turn market noise into actionable decisions.
+              Buy & Sell transactions will be automatically executed by
+              TbirdTrader at secure and trusted platforms such as Coinbase,
+              Binance and Kraken.
             </p>
           </div>
 
@@ -109,9 +115,7 @@ export default function HomePage() {
 
             <div className="flex flex-col gap-3 rounded-lg border border-[#30363d] bg-[#0d1117] p-4">
               <div className="h-1 w-10 rounded-full bg-gradient-to-r from-[#1e90ff] to-[#00b4ff]" />
-              <h3 className="text-sm font-semibold">
-                Automated Buy, Hold & Sell
-              </h3>
+              <h3 className="text-sm font-semibold">Automated Buy, Hold & Sell</h3>
               <p className="text-xs text-[#8b949e]">
                 Turn insights into execution. Automatically trigger Buy, Hold,
                 or Sell decisions based on your configured strategy logic and
@@ -132,7 +136,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* LIVE DEMO PREVIEW */}
+      {/* SEE IT IN ACTION */}
       <section className="border-b border-[#30363d] bg-[#0d1117]">
         <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
           <div className="mb-6 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
@@ -147,48 +151,55 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="rounded-xl border border-[#30363d] bg-[#161b22] p-4">
-            <div className="flex h-72 items-center justify-center text-xs text-[#30363d]">
-              Live / Simulated CandlestickChart Component Goes Here
-            </div>
+          <div className="rounded-xl overflow-hidden border border-[#30363d] bg-[#161b22]">
+            <Image
+              src="/prediction.png"
+              alt="Prediction Chart Preview"
+              width={1600}
+              height={900}
+              className="w-full h-auto"
+              priority
+            />
           </div>
         </div>
       </section>
 
-      {/* FEATURE SHOWCASE */}
+      {/* FEATURE SHOWCASE — IMAGE BELOW TEXT */}
       <section className="border-b border-[#30363d] bg-[#161b22]">
-        <div className="mx-auto flex max-w-6xl flex-col gap-10 px-6 py-16 md:flex-row md:py-20">
-          <div className="flex-1 space-y-4">
+        <div className="mx-auto max-w-6xl flex flex-col gap-10 px-6 py-16 md:py-20">
+
+          {/* Text */}
+          <div className="space-y-4">
             <h2 className="text-2xl font-semibold md:text-3xl">
-              Designed for real trading workflows.
+              Designed for real automated trading.
             </h2>
             <p className="text-sm text-[#8b949e] md:text-base">
               From market data to execution, TbirdTrader is built as a modular,
-              extensible platform that grows with your strategies.
+              extensible platform that grows with your strategies and risk
+              mitigation thresholds.
             </p>
             <ul className="mt-4 space-y-2 text-sm text-[#c9d1d9]">
               <li>• Real‑time market data and multi‑exchange support</li>
               <li>• Strategy backtesting and performance analytics</li>
-              <li>• Paper trading engine for safe experimentation</li>
-              <li>• Execution engine roadmap for live trading</li>
+              <li>• Basic User Account gives unlimited (no subscription costs) Paper trading engine</li>
+              <li>• Premium User Account gives access to the fully automated Trader bot (0.5% fee)</li>
+              <li>• API keys for Buy & Sell automation are secure and encrypted</li>
               <li>• Portfolio and risk management tooling</li>
             </ul>
           </div>
 
-          <div className="flex-1">
-            <div className="relative mx-auto h-72 max-w-md">
-              <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-[#1e90ff33] to-[#00b4ff11] blur-2xl" />
-              <div className="relative h-full rounded-xl border border-[#30363d] bg-[#0d1117] p-4">
-                <div className="mb-3 h-4 w-24 rounded-full bg-[#161b22]" />
-                <div className="mb-3 h-5 w-40 rounded-full bg-[#161b22]" />
-                <div className="h-40 rounded-md bg-gradient-to-b from-[#161b22] to-[#0d1117]" />
-                <div className="mt-4 flex gap-2">
-                  <div className="h-6 w-16 rounded-full bg-[#161b22]" />
-                  <div className="h-6 w-20 rounded-full bg-[#161b22]" />
-                </div>
-              </div>
-            </div>
+          {/* Image BELOW the text */}
+          <div className="rounded-xl overflow-hidden border border-[#30363d] bg-[#0d1117]">
+            <Image
+              src="/traderbot.png"
+              alt="TbirdTrader Bot Interface"
+              width={1600}
+              height={1200}
+              className="w-full h-auto"
+              priority
+            />
           </div>
+
         </div>
       </section>
 
@@ -206,9 +217,7 @@ export default function HomePage() {
           <div className="mt-8 grid gap-6 md:grid-cols-4">
             <div className="rounded-lg border border-[#30363d] bg-[#0d1117] p-4">
               <p className="text-xs font-semibold text-[#26a69a]">Phase 1</p>
-              <h3 className="mt-1 text-sm font-semibold">
-                Paper Trading Engine
-              </h3>
+              <h3 className="mt-1 text-sm font-semibold">Paper Trading Engine</h3>
               <p className="mt-2 text-xs text-[#8b949e]">
                 Simulate strategies safely with real market data and full
                 visibility into performance.
@@ -217,9 +226,7 @@ export default function HomePage() {
 
             <div className="rounded-lg border border-[#30363d] bg-[#0d1117] p-4">
               <p className="text-xs font-semibold text-[#c9d1d9]">Phase 2</p>
-              <h3 className="mt-1 text-sm font-semibold">
-                Strategy Execution Layer
-              </h3>
+              <h3 className="mt-1 text-sm font-semibold">Strategy Execution Layer</h3>
               <p className="mt-2 text-xs text-[#8b949e]">
                 Turn validated strategies into automated workflows with
                 configurable rules and safeguards.
@@ -228,9 +235,7 @@ export default function HomePage() {
 
             <div className="rounded-lg border border-[#30363d] bg-[#0d1117] p-4">
               <p className="text-xs font-semibold text-[#c9d1d9]">Phase 3</p>
-              <h3 className="mt-1 text-sm font-semibold">
-                Marketplace & Plugins
-              </h3>
+              <h3 className="mt-1 text-sm font-semibold">Marketplace & Plugins</h3>
               <p className="mt-2 text-xs text-[#8b949e]">
                 Extend TbirdTrader with community strategies, indicators, and
                 integrations.
@@ -239,9 +244,7 @@ export default function HomePage() {
 
             <div className="rounded-lg border border-[#30363d] bg-[#0d1117] p-4">
               <p className="text-xs font-semibold text-[#c9d1d9]">Phase 4</p>
-              <h3 className="mt-1 text-sm font-semibold">
-                Automated Live Trading
-              </h3>
+              <h3 className="mt-1 text-sm font-semibold">Automated Live Trading</h3>
               <p className="mt-2 text-xs text-[#8b949e]">
                 Execute live trades with confidence using hardened, risk‑aware
                 automation pipelines.
@@ -290,14 +293,7 @@ export default function HomePage() {
             </div>
 
             <div className="grid grid-cols-2 gap-8 text-xs text-[#8b949e] md:grid-cols-4">
-              <div>
-                <h4 className="mb-2 text-xs font-semibold text-[#c9d1d9]">
-                  
-                </h4>
-                <ul className="space-y-1">
-                  
-                </ul>
-              </div>
+              <div />
               <div>
                 <h4 className="mb-2 text-xs font-semibold text-[#c9d1d9]">
                   Company
@@ -307,6 +303,7 @@ export default function HomePage() {
                   <li><a href="/roadmap" className="hover:text-white">Roadmap</a></li>
                 </ul>
               </div>
+
               <div>
                 <h4 className="mb-2 text-xs font-semibold text-[#c9d1d9]">
                   Legal
@@ -315,6 +312,7 @@ export default function HomePage() {
                   <li><a href="/disclaimer" className="hover:text-white">Risk Disclaimer</a></li>
                 </ul>
               </div>
+
               <div>
                 <h4 className="mb-2 text-xs font-semibold text-[#c9d1d9]">
                   Connect
@@ -331,6 +329,7 @@ export default function HomePage() {
           </div>
         </div>
       </footer>
+
     </main>
   );
 }

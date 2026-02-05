@@ -66,7 +66,7 @@ export default function AboutPage() {
             <p className="text-[#8b949e] text-sm md:text-base leading-relaxed">
               Motivated by the rise of trader scams and the need for genuine, 
               transparent solutions, Bruno developed TbirdTrader as a real-world 
-              business case for AI‑driven improvement. His goal is to offer 
+              business case for AI‑driven trade automation. His goal is to offer 
               innovative capabilities that are honest, practical, and 
               straightforward — empowering traders with tools they can trust.
             </p>
@@ -102,7 +102,7 @@ export default function AboutPage() {
             Reliability, transparency, and user trust are at the core of 
             everything we build. Whether you're testing a new strategy or 
             preparing for full automation, TbirdTrader is designed to support 
-            your journey every step of the way.
+            your digital trading journey every step of the way.
           </p>
         </section>
 
