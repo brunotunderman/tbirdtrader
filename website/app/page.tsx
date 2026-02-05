@@ -153,7 +153,7 @@ export default function HomePage() {
 
           <div className="rounded-xl overflow-hidden border border-[#30363d] bg-[#161b22]">
             <Image
-              src="/prediction.png"
+              src="/prediction2.png"
               alt="Prediction Chart Preview"
               width={1600}
               height={900}
@@ -191,7 +191,7 @@ export default function HomePage() {
           {/* Image BELOW the text */}
           <div className="rounded-xl overflow-hidden border border-[#30363d] bg-[#0d1117]">
             <Image
-              src="/traderbot.png"
+              src="/traderbot2.png"
               alt="TbirdTrader Bot Interface"
               width={1600}
               height={1200}
