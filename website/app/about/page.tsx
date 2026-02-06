@@ -41,7 +41,7 @@ export default function AboutPage() {
           that grows with your strategies.
         </p>
 
-        {/* Founder Section */}
+        {/* Founder Section — BRUNO */}
         <section className="flex flex-col md:flex-row gap-8 items-start">
           <div className="w-full md:w-48 flex-shrink-0">
             <Image
@@ -80,6 +80,46 @@ export default function AboutPage() {
           </div>
         </section>
 
+        {/* COO Section — NIELS */}
+        <section className="flex flex-col md:flex-row gap-8 items-start">
+          <div className="w-full md:w-48 flex-shrink-0">
+            <Image
+              src="/Niels.png"
+              alt="Niels van Oostrum"
+              width={180}
+              height={319}
+              className="rounded-lg border border-[#30363d] object-cover"
+            />
+          </div>
+
+          <div className="space-y-4">
+            <h2 className="text-xl font-semibold">Chief Operating Officer</h2>
+
+            <p className="text-[#8b949e] text-sm md:text-base leading-relaxed">
+              <span className="font-semibold text-[#c9d1d9]">Niels van Oostrum </span> 
+              grew up in an entrepreneurial family in Noordwijk, where he developed 
+              a strong customer‑focused mindset from an early age while working in 
+              the family hotel. He holds a Bachelor of Commerce from Hogeschool 
+              Leiden and an MBA from Dublin Business School.
+            </p>
+
+            <p className="text-[#8b949e] text-sm md:text-base leading-relaxed">
+              With over ten years of experience in commercial technology roles — 
+              including six years at global software leader SAP — Niels has built 
+              deep expertise in helping organizations use data, automation, and AI 
+              to create smarter and more reliable digital solutions.
+            </p>
+
+            <p className="text-[#8b949e] text-sm md:text-base leading-relaxed">
+              As Chief Operating Officer at TbirdTrader, Niels focuses on combining 
+              innovation with trust and transparency. He ensures the platform delivers 
+              secure, user‑friendly, and data‑driven trading experiences. By leveraging 
+              AI and advanced technology, he helps position TbirdTrader as a reliable 
+              partner for traders who want to navigate the crypto market with confidence.
+            </p>
+          </div>
+        </section>
+
         {/* Thierry Section */}
         <section className="flex flex-col md:flex-row gap-8 items-start">
           <div className="w-full md:w-48 flex-shrink-0">
@@ -96,25 +136,27 @@ export default function AboutPage() {
             <h2 className="text-xl font-semibold">Commercial Leadership</h2>
 
             <p className="text-[#8b949e] text-sm md:text-base leading-relaxed">
-              <span className="font-semibold text-[#c9d1d9]">Thierry Tunderman</span> 
-              {" "}combines a strong commercial mindset with a passion 
-              for technology and building businesses around solutions that actually 
-              deliver value. With experience working closely with clients, sales 
-              teams, and technology-driven products, he focuses on translating 
-              complex technology into clear, practical value that customers 
-              understand and want to buy. As Chief Revenue Officer, Thierry is 
-              responsible for driving global sales strategy, revenue growth, and 
-              commercial partnerships, making sure advanced technology is positioned 
-              in a way that creates trust, market traction, and sustainable revenue.
+              <span className="font-semibold text-[#c9d1d9]">Thierry Tunderman </span> 
+              combines a strong commercial mindset with a passion for technology 
+              and building businesses around solutions that actually deliver value. 
+              With experience working closely with clients, sales teams, and 
+              technology-driven products, he focuses on translating complex 
+              technology into clear, practical value that customers understand 
+              and want to buy.
+            </p>
+
+            <p className="text-[#8b949e] text-sm md:text-base leading-relaxed">
+              As Chief Revenue Officer, Thierry is responsible for driving global 
+              sales strategy, revenue growth, and commercial partnerships — ensuring 
+              advanced technology is positioned in a way that creates trust, market 
+              traction, and sustainable revenue.
             </p>
 
             <p className="text-[#8b949e] text-sm md:text-base leading-relaxed">
               Driven by the rapid evolution of AI, automation, and digital finance, 
-              Thierry is closely involved from the commercial side in bringing an 
-              AI-driven crypto trading solution to market. His focus is on connecting 
-              innovative technology with real customer needs, helping position 
-              transparent, data-driven products that customers can trust and 
-              confidently scale with for the long term.
+              Thierry plays a key role in bringing an AI‑driven crypto trading 
+              solution to market. His focus is on connecting innovative technology 
+              with real customer needs.
             </p>
           </div>
         </section>
