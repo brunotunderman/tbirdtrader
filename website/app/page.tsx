@@ -301,6 +301,7 @@ export default function HomePage() {
                 <ul className="space-y-1">
                   <li><a href="/about" className="hover:text-white">About</a></li>
                   <li><a href="/roadmap" className="hover:text-white">Roadmap</a></li>
+                  <li><a href="/whitepaper" className="hover:text-white">Whitepaper</a></li>
                 </ul>
               </div>
 
