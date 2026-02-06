@@ -1,5 +1,6 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Query
 import aiohttp
+from datetime import datetime, timedelta
 
 router = APIRouter()
 
@@ -7,54 +8,49 @@ router = APIRouter()
 VALID_GRANULARITIES = [60, 300, 900, 3600, 21600, 86400]
 
 
-@router.get("/candles")
-async def get_candles(symbol: str = "BTC-EUR", granularity: int = 300):
-    """
-    Returns OHLC candles for a symbol.
-    Granularity options (seconds):
-    60, 300, 900, 3600, 21600, 86400
-    """
-
+@router.get("/market/candles")
+async def get_candles(
+    symbol: str = Query(..., description="Trading pair, e.g. BTC-EUR"),
+    granularity: int = Query(300, description="Candle size in seconds"),
+    limit: int = Query(200, description="Number of candles")
+):
     if granularity not in VALID_GRANULARITIES:
         raise HTTPException(
             status_code=400,
-            detail=f"Invalid granularity. Must be one of: {VALID_GRANULARITIES}"
+            detail=f"Invalid granularity. Allowed: {VALID_GRANULARITIES}"
         )
 
+    end_time = datetime.utcnow()
+    start_time = end_time - timedelta(seconds=granularity * limit)
+
     url = (
-        f"https://api.exchange.coinbase.com/products/"
-        f"{symbol}/candles?granularity={granularity}"
+        f"https://api.exchange.coinbase.com/products/{symbol}/candles"
+        f"?granularity={granularity}"
+        f"&start={start_time.isoformat()}"
+        f"&end={end_time.isoformat()}"
     )
 
-    try:
-        async with aiohttp.ClientSession() as session:
-            async with session.get(url, timeout=10) as resp:
-                if resp.status != 200:
-                    raise HTTPException(
-                        status_code=resp.status,
-                        detail="Failed to fetch candles from Coinbase"
-                    )
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url) as resp:
+            if resp.status != 200:
+                raise HTTPException(
+                    status_code=resp.status,
+                    detail=f"Coinbase error: {await resp.text()}"
+                )
 
-                data = await resp.json()
+            raw = await resp.json()
 
-                # Coinbase returns:
-                # [ timestamp, low, high, open, close, volume ]
-                candles = [
-                    {
-                        "timestamp": c[0],
-                        "low": c[1],
-                        "high": c[2],
-                        "open": c[3],
-                        "close": c[4],
-                        "volume": c[5],
-                    }
-                    for c in data
-                ]
+    # Coinbase returns: [time, low, high, open, close, volume]
+    candles = [
+        {
+            "timestamp": c[0],
+            "open": c[3],
+            "high": c[2],
+            "low": c[1],
+            "close": c[4],
+            "volume": c[5],
+        }
+        for c in raw
+    ]
 
-                # Reverse to chronological order (Coinbase returns newest first)
-                candles.reverse()
-
-                return {"symbol": symbol, "granularity": granularity, "candles": candles}
-
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+    return {"candles": candles}

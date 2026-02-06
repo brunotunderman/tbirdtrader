@@ -10,7 +10,7 @@ export default function HomePage() {
       <header className="flex items-center justify-end px-6 py-4 border-b border-[#30363d] bg-[#0d1117]">
         <a
           href="/login"
-          className="text-base font-semibold text-[#c9d1d9] hover:text-white"
+          className="rounded-md bg-gradient-to-r from-[#1e90ff] to-[#00b4ff] px-5 py-2 text-sm font-semibold text-white shadow-md shadow-[#1e90ff55] hover:opacity-90 transition"
         >
           Login
         </a>
@@ -33,9 +33,9 @@ export default function HomePage() {
             </div>
 
             <h1 className="text-3xl font-semibold leading-tight md:text-5xl">
-              Trade Smarter. <br />
+              Trade Smarter <br />
               <span className="text-transparent bg-gradient-to-r from-[#1e90ff] to-[#00b4ff] bg-clip-text">
-                Automate with Confidence.
+                Automate with Confidence
               </span>
             </h1>
 
@@ -81,7 +81,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
           <div className="mb-10 max-w-2xl">
             <h2 className="text-2xl font-semibold md:text-3xl">
-              Built for traders who demand more.
+              Built for traders who demand more
             </h2>
             <p className="mt-3 text-sm text-[#8b949e] md:text-base">
               TbirdTrader combines AI‑driven algorithms, robust backtesting, and
@@ -142,7 +142,7 @@ export default function HomePage() {
           <div className="mb-6 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
             <div>
               <h2 className="text-2xl font-semibold md:text-3xl">
-                See it in action.
+                See it in action
               </h2>
               <p className="mt-2 text-sm text-[#8b949e] md:text-base">
                 Experience the clarity of TbirdTrader’s visual engine with
@@ -171,7 +171,7 @@ export default function HomePage() {
           {/* Text */}
           <div className="space-y-4">
             <h2 className="text-2xl font-semibold md:text-3xl">
-              Designed for real automated trading.
+              Designed for real automated trading
             </h2>
             <p className="text-sm text-[#8b949e] md:text-base">
               From market data to execution, TbirdTrader is built as a modular,
@@ -207,7 +207,7 @@ export default function HomePage() {
       <section className="border-b border-[#30363d] bg-[#1b222c]">
         <div className="mx-auto max-w-6xl px-6 py-16 md:py-20">
           <h2 className="text-2xl font-semibold md:text-3xl">
-            Roadmap: from insight to full automation.
+            Roadmap: from insight to full automation
           </h2>
           <p className="mt-2 text-sm text-[#8b949e] md:text-base">
             TbirdTrader is evolving into a fully automated, risk‑aware trading

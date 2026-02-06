@@ -29,21 +29,21 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#0d1117] text-[#c9d1d9]`}
       >
         {/* Global Header */}
-        <header className="flex items-center px-6 py-0 shadow bg-white">
+        <header className="flex items-center px-6 py-4 border-b border-[#30363d] bg-[#161b22]">
           <Image
-            src="/brand/tbird-logo.png"
+            src="/brand/logo_new.png"
             alt="TbirdTrader Logo"
-            width={135}
-            height={44}
+            width={160}
+            height={40}
             priority
           />
         </header>
 
         {/* Page Content */}
-        <main className="p-6">
+        <main>
           {children}
         </main>
       </body>

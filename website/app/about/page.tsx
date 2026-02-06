@@ -45,7 +45,7 @@ export default function AboutPage() {
         <section className="flex flex-col md:flex-row gap-8 items-start">
           <div className="w-full md:w-48 flex-shrink-0">
             <Image
-              src="/bruno_new2.jpg"
+              src="/bruno.png"
               alt="Bruno Tunderman"
               width={180}
               height={319}
@@ -55,6 +55,7 @@ export default function AboutPage() {
 
           <div className="space-y-4">
             <h2 className="text-xl font-semibold">Founder Story</h2>
+
             <p className="text-[#8b949e] text-sm md:text-base leading-relaxed">
               CEO and founder <span className="font-semibold text-[#c9d1d9]">Bruno Tunderman </span> 
               has decades of experience in IT dating back to the late ’80s. 
@@ -69,6 +70,51 @@ export default function AboutPage() {
               business case for AI‑driven trade automation. His goal is to offer 
               innovative capabilities that are honest, practical, and 
               straightforward — empowering traders with tools they can trust.
+            </p>
+
+            <p className="text-[#8b949e] text-sm md:text-base leading-relaxed">
+              Bruno holds a NIMA‑C marketing degree, a Master of Arts in Marketing 
+              Management with Birmingham City University in the United Kingdom, 
+              and a Master in Philosophy with the Vrije Universiteit Amsterdam.
+            </p>
+          </div>
+        </section>
+
+        {/* Thierry Section */}
+        <section className="flex flex-col md:flex-row gap-8 items-start">
+          <div className="w-full md:w-48 flex-shrink-0">
+            <Image
+              src="/thierry.png"
+              alt="Thierry Tunderman"
+              width={180}
+              height={319}
+              className="rounded-lg border border-[#30363d] object-cover"
+            />
+          </div>
+
+          <div className="space-y-4">
+            <h2 className="text-xl font-semibold">Commercial Leadership</h2>
+
+            <p className="text-[#8b949e] text-sm md:text-base leading-relaxed">
+              <span className="font-semibold text-[#c9d1d9]">Thierry Tunderman</span> 
+              {" "}combines a strong commercial mindset with a passion 
+              for technology and building businesses around solutions that actually 
+              deliver value. With experience working closely with clients, sales 
+              teams, and technology-driven products, he focuses on translating 
+              complex technology into clear, practical value that customers 
+              understand and want to buy. As Chief Revenue Officer, Thierry is 
+              responsible for driving global sales strategy, revenue growth, and 
+              commercial partnerships, making sure advanced technology is positioned 
+              in a way that creates trust, market traction, and sustainable revenue.
+            </p>
+
+            <p className="text-[#8b949e] text-sm md:text-base leading-relaxed">
+              Driven by the rapid evolution of AI, automation, and digital finance, 
+              Thierry is closely involved from the commercial side in bringing an 
+              AI-driven crypto trading solution to market. His focus is on connecting 
+              innovative technology with real customer needs, helping position 
+              transparent, data-driven products that customers can trust and 
+              confidently scale with for the long term.
             </p>
           </div>
         </section>

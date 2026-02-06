@@ -12,9 +12,9 @@ import {
   type Time,
 } from "lightweight-charts";
 
-// ---- Types ----
-export type Candle = CandlestickData<Time>;        // { time, open, high, low, close }
-export type PredictionPoint = LineData<Time>;      // { time, value }
+export type Candle = CandlestickData<Time>;
+export type PredictionPoint = LineData<Time>;
+
 export interface PredictionData {
   mid: PredictionPoint[];
   upper: PredictionPoint[];
@@ -27,11 +27,6 @@ interface Props {
   height?: number;
 }
 
-/**
- * CandlestickChart
- * - Renders candlesticks plus a prediction overlay (mid/upper/lower).
- * - Assumes timestamps are UNIX seconds (e.g., 1707139200).
- */
 export default function CandlestickChart({
   candles,
   prediction,
@@ -41,13 +36,12 @@ export default function CandlestickChart({
   const chartRef = useRef<IChartApi | null>(null);
   const candleSeriesRef = useRef<ISeriesApi<"Candlestick"> | null>(null);
 
-  // Keep handles for prediction series so we can remove/recreate cleanly
   const midRef = useRef<ISeriesApi<"Line"> | null>(null);
   const upperRef = useRef<ISeriesApi<"Line"> | null>(null);
   const lowerRef = useRef<ISeriesApi<"Line"> | null>(null);
   const bandRef = useRef<ISeriesApi<"Area"> | null>(null);
 
-  // ---- Create chart (once) & manage resize ----
+  // Setup chart
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
@@ -64,7 +58,6 @@ export default function CandlestickChart({
       width: el.clientWidth,
       height,
       crosshair: { mode: 1 },
-      localization: { locale: typeof navigator !== "undefined" ? navigator.language : "en-US" },
     });
 
     chartRef.current = chart;
@@ -72,119 +65,73 @@ export default function CandlestickChart({
     const candleSeries = chart.addCandlestickSeries({
       upColor: "#26A69A",
       downColor: "#EF5350",
-      borderVisible: false,
       wickUpColor: "#26A69A",
       wickDownColor: "#EF5350",
+      borderVisible: false,
     });
+
     candleSeriesRef.current = candleSeries;
 
-    const handleResize = () => {
+    const resize = () => {
       if (!containerRef.current) return;
-      chart.applyOptions({ width: containerRef.current.clientWidth, height });
+      chart.applyOptions({ width: containerRef.current.clientWidth });
     };
 
-    // Optional: fit the full range after mount
-    const fitOnce = () => {
-      try {
-        chart.timeScale().fitContent();
-      } catch {
-        /* no-op */
-      }
-    };
-
-    window.addEventListener("resize", handleResize);
-    const t = window.setTimeout(fitOnce, 50);
+    window.addEventListener("resize", resize);
 
     return () => {
-      window.removeEventListener("resize", handleResize);
-      window.clearTimeout(t);
+      window.removeEventListener("resize", resize);
 
-      // Clean up prediction series
       if (midRef.current) chart.removeSeries(midRef.current);
       if (upperRef.current) chart.removeSeries(upperRef.current);
       if (lowerRef.current) chart.removeSeries(lowerRef.current);
       if (bandRef.current) chart.removeSeries(bandRef.current);
-
-      // Clean up candles series
-      if (candleSeriesRef.current) {
-        chart.removeSeries(candleSeriesRef.current);
-        candleSeriesRef.current = null;
-      }
+      if (candleSeriesRef.current) chart.removeSeries(candleSeriesRef.current);
 
       chart.remove();
-      chartRef.current = null;
     };
   }, [height]);
 
-  // ---- Update candlestick data ----
+  // Candle updates
   useEffect(() => {
     if (candles && candleSeriesRef.current) {
       candleSeriesRef.current.setData(candles);
-
-      // Optional: keep view fitted to content when new data arrives
       try {
         chartRef.current?.timeScale().fitContent();
-      } catch {
-        /* no-op */
-      }
+      } catch {}
     }
   }, [candles]);
 
-  // ---- Prediction overlay (mid/upper/lower + area fill approximation) ----
+  // Prediction overlays
   useEffect(() => {
     const chart = chartRef.current;
     if (!chart) return;
 
-    // Remove old lines/area first
-    if (midRef.current) {
-      chart.removeSeries(midRef.current);
-      midRef.current = null;
-    }
-    if (upperRef.current) {
-      chart.removeSeries(upperRef.current);
-      upperRef.current = null;
-    }
-    if (lowerRef.current) {
-      chart.removeSeries(lowerRef.current);
-      lowerRef.current = null;
-    }
-    if (bandRef.current) {
-      chart.removeSeries(bandRef.current);
-      bandRef.current = null;
-    }
+    if (midRef.current) chart.removeSeries(midRef.current);
+    if (upperRef.current) chart.removeSeries(upperRef.current);
+    if (lowerRef.current) chart.removeSeries(lowerRef.current);
+    if (bandRef.current) chart.removeSeries(bandRef.current);
 
     if (!prediction) return;
 
-    // Midline (TbirdTrader Blue)
     const midLine = chart.addLineSeries({
       color: "#0A84FF",
       lineWidth: 2,
-      lineType: LineStyle.Solid,
       priceLineVisible: false,
-      crosshairMarkerVisible: true,
     });
 
-    // Upper confidence (Green)
     const upperLine = chart.addLineSeries({
       color: "#26A69A",
       lineWidth: 1.5,
-      lineType: LineStyle.Solid,
       priceLineVisible: false,
-      crosshairMarkerVisible: false,
     });
 
-    // Lower confidence (Red)
     const lowerLine = chart.addLineSeries({
       color: "#EF5350",
       lineWidth: 1.5,
-      lineType: LineStyle.Solid,
       priceLineVisible: false,
-      crosshairMarkerVisible: false,
     });
 
-    // Area fill approximation: lightweight-charts area series accepts a single "value".
-    // We approximate a band by plotting the lower series as an area. For a true band,
-    // we can layer two area series—happy to provide that variant if you want it.
     const areaBand = chart.addAreaSeries({
       topColor: "rgba(10, 132, 255, 0.15)",
       bottomColor: "rgba(10, 132, 255, 0.05)",
@@ -192,16 +139,14 @@ export default function CandlestickChart({
       lineWidth: 0,
     });
 
-    // Apply data
     midLine.setData(prediction.mid);
     upperLine.setData(prediction.upper);
     lowerLine.setData(prediction.lower);
 
-    // Plot the lower as the filled area (approximation)
-    const lowerAsArea = prediction.lower.map((p) => ({ time: p.time, value: p.value }));
-    areaBand.setData(lowerAsArea);
+    areaBand.setData(
+      prediction.lower.map((p) => ({ time: p.time, value: p.value }))
+    );
 
-    // Save refs for cleanup
     midRef.current = midLine;
     upperRef.current = upperLine;
     lowerRef.current = lowerLine;
@@ -210,33 +155,18 @@ export default function CandlestickChart({
 
   return (
     <div className="relative">
-      {/* Chart container */}
       <div ref={containerRef} className="w-full" />
 
-      {/* Legend (optional) */}
       {prediction && (
-        <div
-          className="
-            absolute top-3 right-3
-            bg-white/80 backdrop-blur-sm
-            px-3 py-2
-            rounded-lg shadow-sm
-            border border-gray-200
-            text-xs text-gray-700
-            space-y-1
-          "
-        >
+        <div className="absolute top-3 right-3 bg-white/80 backdrop-blur-sm px-3 py-2 rounded-lg shadow-sm border border-gray-200 text-xs text-gray-700 space-y-1">
           <div className="flex items-center gap-2">
-            <span className="w-3 h-1 rounded bg-blue-600" />
-            Prediction
+            <span className="w-3 h-1 rounded bg-blue-600" /> Prediction
           </div>
           <div className="flex items-center gap-2">
-            <span className="w-3 h-1 rounded bg-green-500" />
-            Upper Confidence
+            <span className="w-3 h-1 rounded bg-green-500" /> Upper Confidence
           </div>
           <div className="flex items-center gap-2">
-            <span className="w-3 h-1 rounded bg-red-500" />
-            Lower Confidence
+            <span className="w-3 h-1 rounded bg-red-500" /> Lower Confidence
           </div>
         </div>
       )}
