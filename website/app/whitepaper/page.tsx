@@ -2,13 +2,12 @@
 
 import Image from "next/image";
 
-export default function HomePage() {
+export default function WhitepaperPage() {
   return (
     <main className="min-h-screen bg-[#1a1f27] text-[#c9d1d9]">
 
       {/* PRINT + FIORI HEADING STYLES */}
       <style jsx global>{`
-        /* SAP Fiori Heading Bar */
         .fiori-heading {
           position: relative;
           padding-left: 20px;
@@ -22,11 +21,10 @@ export default function HomePage() {
           width: 4px;
           height: 36px;
           border-radius: 2px;
-          background: #0A6ED1; /* SAP Horizon Primary Blue */
+          background: #0A6ED1;
         }
 
         @media print {
-
           body, main, section, footer {
             background: #1a1f27 !important;
             color: #ffffff !important;
@@ -38,29 +36,24 @@ export default function HomePage() {
             display: none !important;
           }
 
-          /* PAGE 1 — HERO */
           section.hero {
             page-break-after: always !important;
             padding: 60px 20px !important;
           }
 
-          /* PAGE 2 — INTRO + PROBLEM + APPROACH */
           .page-2-block {
             page-break-after: always !important;
           }
 
-          /* PAGE 3 — PREDICTION + SECURITY */
           .page-3-block {
             page-break-after: always !important;
           }
 
-          /* PAGE 4 — PLATFORM FEATURES + ROADMAP + CONCLUSION */
           .page-4-block {
             page-break-inside: avoid !important;
             page-break-after: always !important;
           }
 
-          /* PAGE 5 — CTA + FOOTER AT BOTTOM */
           .closing-page {
             display: flex !important;
             flex-direction: column !important;
@@ -75,14 +68,12 @@ export default function HomePage() {
             padding-bottom: 40px !important;
           }
 
-          /* DEFAULT PARAGRAPH COLOR IN PRINT */
           p, li {
             color: #8b949e !important;
             font-size: 14px !important;
             line-height: 1.6 !important;
           }
 
-          /* OVERRIDE CTA TEXT TO PURE WHITE */
           .cta-section p {
             color: #ffffff !important;
           }
@@ -91,7 +82,7 @@ export default function HomePage() {
             color: #ffffff !important;
           }
 
-          img, .next-image {
+          img {
             max-width: 100% !important;
             height: auto !important;
           }
@@ -103,9 +94,18 @@ export default function HomePage() {
         }
       `}</style>
 
-      {/* HEADER WITH ONLY DOWNLOAD BUTTON */}
+      {/* HEADER WITH HOME + DOWNLOAD */}
       <header className="flex items-center justify-end gap-4 px-6 py-4 border-b border-[#30363d] bg-[#1a1f27]">
 
+        {/* HOME BUTTON — same style as About/Roadmap */}
+        <a
+          href="/"
+          className="rounded-md bg-[#0d1117] px-5 py-2 text-sm font-semibold text-white border border-[#30363d] hover:bg-[#161b22] transition"
+        >
+          Home
+        </a>
+
+        {/* DOWNLOAD WHITEPAPER */}
         <a
           href="/TbirdTrade Whitepaper Feb_26.pdf"
           download

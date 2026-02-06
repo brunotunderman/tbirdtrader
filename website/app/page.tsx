@@ -6,7 +6,7 @@ export default function HomePage() {
   return (
     <main className="min-h-screen bg-[#0d1117] text-[#c9d1d9]">
 
-      {/* LOGIN HEADER */}
+      {/* HEADER WITH ONLY LOGIN BUTTON */}
       <header className="flex items-center justify-end px-6 py-4 border-b border-[#30363d] bg-[#0d1117]">
         <a
           href="/login"
@@ -40,9 +40,9 @@ export default function HomePage() {
             </h1>
 
             <p className="max-w-xl text-sm text-[#8b949e] md:text-base">
-              AI‑powered trading tools designed for clarity, speed, and
-              precision. From predictive insights to automated execution, built
-              for traders who demand control and reliability.
+              AI‑powered trading tools designed for clarity, speed, and precision.
+              From predictive insights to automated execution, built for traders
+              who demand control and reliability.
             </p>
 
             <div className="flex flex-wrap gap-4">
@@ -97,9 +97,9 @@ export default function HomePage() {
               <div className="h-1 w-10 rounded-full bg-gradient-to-r from-[#1e90ff] to-[#00b4ff]" />
               <h3 className="text-sm font-semibold">AI‑Driven Algorithms</h3>
               <p className="text-xs text-[#8b949e]">
-                Harness advanced predictive models, including RSI‑based
-                signaling and pattern recognition, to anticipate market
-                movements before they unfold.
+                Harness advanced predictive models, including RSI‑based signaling
+                and pattern recognition, to anticipate market movements before
+                they unfold.
               </p>
             </div>
 
@@ -164,11 +164,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* FEATURE SHOWCASE — IMAGE BELOW TEXT */}
+      {/* FEATURE SHOWCASE */}
       <section className="border-b border-[#30363d] bg-[#161b22]">
         <div className="mx-auto max-w-6xl flex flex-col gap-10 px-6 py-16 md:py-20">
 
-          {/* Text */}
           <div className="space-y-4">
             <h2 className="text-2xl font-semibold md:text-3xl">
               Designed for real automated trading
@@ -181,14 +180,13 @@ export default function HomePage() {
             <ul className="mt-4 space-y-2 text-sm text-[#c9d1d9]">
               <li>• Real‑time market data and multi‑exchange support</li>
               <li>• Strategy backtesting and performance analytics</li>
-              <li>• Basic User Account gives unlimited (no subscription costs) Paper trading engine</li>
-              <li>• Premium User Account gives access to the fully automated Trader bot (0.5% fee)</li>
+              <li>• Basic User Account gives unlimited Paper trading engine</li>
+              <li>• Premium User Account gives access to the automated Trader bot</li>
               <li>• API keys for Buy & Sell automation are secure and encrypted</li>
               <li>• Portfolio and risk management tooling</li>
             </ul>
           </div>
 
-          {/* Image BELOW the text */}
           <div className="rounded-xl overflow-hidden border border-[#30363d] bg-[#0d1117]">
             <Image
               src="/Traderbot2.png"
