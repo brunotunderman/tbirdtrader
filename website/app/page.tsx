@@ -40,7 +40,12 @@ export default function HomePage() {
             </h1>
 
             <p className="max-w-xl text-sm text-[#8b949e] md:text-base">
-              AI‑powered trading tools designed for clarity, speed, and precision.
+              For an exchange trader, whether you are in Crypto, ETF's or more traditional assest, it's all about BJATL and SJATH. Let us explain.
+	      BJATL (pronounced as bee-djettel) is Buy Just After The Low, while SJATH (prounced as es-djet) is about Sell Just After The High.
+	      The problem is that we humans need to sleep, eat, drink and have fun. At that is where the TbirdTrader comes in. TbirdTrader is a AI driven Trade agent, 
+              a bot that is monitoring 24/7 your portfolio assets and automatically executes Buy and Sell transactions at your preferred platform such as Binance, Coinbase, Kraken, etc.
+              Based on a prediction algortyhm that includes RSI, fear and greed sentiment and volatiliy, backtested by historical data TbirdTrader will trade at the right moment
+              securing your assets automatically grows when it can and holds when it must. TbirdTrader is all about next level digital trading designed for clarity, speed, and precision.
               From predictive insights to automated execution, built for traders
               who demand control and reliability.
             </p>
