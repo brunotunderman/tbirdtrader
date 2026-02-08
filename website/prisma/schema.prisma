@@ -1,0 +1,26 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                 String      @id @default(uuid())
+  email              String      @unique
+  passwordHash       String
+  twoFactorEnabled   Boolean     @default(false)
+  twoFactorSecret    String?
+  profileType        ProfileType
+  transactionFeeRate Decimal     @default(0.0)
+  createdAt          DateTime    @default(now())
+  updatedAt          DateTime    @updatedAt
+}
+
+enum ProfileType {
+  BASIC
+  PREMIUM
+  ADMIN
+}

@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@prisma/client": "^7.3.0",
     "autoprefixer": "^10.4.24",
     "jsonwebtoken": "^9.0.3",
     "lightweight-charts": "^4.2.3",
@@ -26,6 +27,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
+    "prisma": "^7.3.0",
     "tailwindcss": "^4.1.18",
     "typescript": "^5"
   }
