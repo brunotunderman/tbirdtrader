@@ -1,36 +1,30 @@
 "use client";
 
+type Timeframe = "1D" | "1W" | "1M" | "1Y";
+
 interface Props {
-  timeframe: string;
-  onChange: (tf: string) => void;
+  timeframe: Timeframe;
+  onChange: (tf: Timeframe) => void;
 }
 
 export default function TimeframeSelector({ timeframe, onChange }: Props) {
-  const buttons = ["1D", "1W", "1M", "1Y"];
+  const options: Timeframe[] = ["1D", "1W", "1M", "1Y"];
 
   return (
-    <div className="inline-flex bg-gray-100 border border-gray-200 rounded-xl p-1 shadow-sm">
-      {buttons.map((tf) => {
-        const active = tf === timeframe;
-
-        return (
-          <button
-            key={tf}
-            onClick={() => onChange(tf)}
-            className={`
-              px-4 py-2 rounded-lg text-sm font-medium transition-all
-              focus:outline-none
-              ${
-                active
-                  ? "bg-blue-600 text-white shadow-sm"
-                  : "text-gray-700 hover:bg-gray-200"
-              }
-            `}
-          >
-            {tf}
-          </button>
-        );
-      })}
+    <div className="flex gap-2">
+      {options.map((tf) => (
+        <button
+          key={tf}
+          onClick={() => onChange(tf)}
+          className={`px-3 py-1 rounded-md border ${
+            timeframe === tf
+              ? "bg-blue-600 border-blue-500 text-white"
+              : "bg-[#0d1117] border-[#30363d] text-gray-300 hover:bg-[#161b22]"
+          }`}
+        >
+          {tf}
+        </button>
+      ))}
     </div>
   );
 }
