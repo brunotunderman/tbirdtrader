@@ -91,7 +91,7 @@ export default function HomePage() {
 
           <div className="rounded-xl overflow-hidden border border-[#30363d] bg-[#161b22] p-4">
             <Image
-              src="/prediction.png"
+              src="/prediction3.png"
               alt="TbirdTrader Chart Preview"
               width={1600}
               height={900}
