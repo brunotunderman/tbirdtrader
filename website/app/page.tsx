@@ -161,9 +161,17 @@ export default function HomePage() {
           </div>
 
           {/* LIVE CHART */}
-          <div className="rounded-xl overflow-hidden border border-[#30363d] bg-[#161b22] p-4">
-            <LiveChart />
-          </div>
+         <div className="rounded-xl overflow-hidden border border-[#30363d] bg-[#161b22] p-4">
+  <Image
+    src="/prediction.png"
+    alt="TbirdTrader Chart Preview"
+    width={1600}
+    height={900}
+    className="w-full h-auto"
+    priority
+  />
+</div>
+
         </div>
       </section>
       {/* FEATURE SHOWCASE */}
