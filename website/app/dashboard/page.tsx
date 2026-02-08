@@ -2,7 +2,13 @@
 
 import { withPremium } from "../../components/auth/withPremium";
 import { useAuth } from "../../components/auth/AuthProvider";
-import LiveChart from "../../components/LiveChart";
+import BalancesCard from "@/components/dashboard/BalancesCard"; 
+import TradeControls from "@/components/dashboard/TradeControls"; 
+import BotStatus from "@/components/dashboard/BotStatus"; 
+import TradeHistory from "@/components/dashboard/TradeHistory"; 
+import BotLog from "@/components/dashboard/BotLog"; 
+import OpenPositions from "@/components/dashboard/OpenPositions";
+import LiveChart from "@/components/dashboard/LiveChart";
 
 function DashboardPage() {
   const { user, refresh } = useAuth();
