@@ -42,8 +42,8 @@ export async function getSession(token: string) {
   }
 }
 
-export function destroySession() {
-  const cookieStore = cookies();
+export async function destroySession() {
+  const cookieStore = await cookies();
 
   cookieStore.set("session", "", {
     httpOnly: true,
