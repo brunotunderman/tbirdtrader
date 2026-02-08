@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
@@ -26,8 +28,4 @@ export async function GET() {
       },
     });
 
-    return NextResponse.json({ user }, { status: 200 });
-  } catch (err) {
-    return NextResponse.json({ user: null }, { status: 200 });
-  }
-}
+    return NextResponse
