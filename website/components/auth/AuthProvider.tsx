@@ -11,6 +11,7 @@ interface User {
 
 interface AuthContextType {
   user: User | null;
+  loading: boolean;
   refresh: () => Promise<void>;
 }
 
@@ -34,12 +35,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const value: AuthContextType = {
     user,
+    loading,
     refresh,
   };
-
-  if (loading) {
-    return <div className="p-6 text-gray-400">Loading…</div>;
-  }
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
