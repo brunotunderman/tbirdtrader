@@ -1,6 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import TimeframeSelector from "../dashboard/TimeframeSelector";
+import CandlestickChart from "../charts/CandlestickChart";
 
 // ---------------------------
 // Types
