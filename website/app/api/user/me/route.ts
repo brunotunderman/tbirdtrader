@@ -28,4 +28,8 @@ export async function GET() {
       },
     });
 
-    return NextResponse
+    return NextResponse.json({ user }, { status: 200 });
+  } catch (err) {
+    return NextResponse.json({ user: null }, { status: 200 });
+  }
+}
