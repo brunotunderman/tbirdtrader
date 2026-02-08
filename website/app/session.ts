@@ -3,65 +3,45 @@ import { NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
 import prisma from "../lib/prisma";
 
-// The secret used to sign and verify session tokens.
-// Make sure this matches your .env value.
-const SECRET = process.env.SESSION_SECRET || "dev-secret";
+const SESSION_SECRET = process.env.SESSION_SECRET!;
 
-// ---------------------------------------------------------------------------
-// Create a session token for a user
-// ---------------------------------------------------------------------------
-export function createSession(user: any) {
-  const token = jwt.sign(
-    {
-      userId: user.id,
-      email: user.email,
-      profileType: user.profileType,
-      transactionFeeRate: user.transactionFeeRate,
-    },
-    SECRET,
-    { expiresIn: "7d" }
-  );
+export async function createSession(userId: string) {
+  const token = jwt.sign({ userId }, SESSION_SECRET, { expiresIn: "7d" });
+
+  const cookieStore = await cookies();
+  cookieStore.set("session", token, {
+    httpOnly: true,
+    secure: true,
+    path: "/",
+    maxAge: 60 * 60 * 24 * 7,
+  });
 
   return token;
 }
 
-// ---------------------------------------------------------------------------
-// Read and validate a session token
-// ---------------------------------------------------------------------------
-export async function getSession(token: string) {
-  try {
-    const decoded: any = jwt.verify(token, SECRET);
-
-    // Fetch fresh user data from DB
-    const user = await prisma.user.findUnique({
-      where: { id: decoded.userId },
-      select: {
-        id: true,
-        email: true,
-        profileType: true,
-        transactionFeeRate: true,
-      },
-    });
-
-    if (!user) return null;
-
-    return { user };
-  } catch {
-    return null;
-  }
-}
-
-// ---------------------------------------------------------------------------
-// Destroy session cookie
-// ---------------------------------------------------------------------------
-export function destroySession() {
-  const cookieStore = cookies();
+export async function destroySession() {
+  const cookieStore = await cookies();
   cookieStore.set("session", "", {
     httpOnly: true,
     secure: true,
     path: "/",
     maxAge: 0,
   });
+}
 
-  return NextResponse.json({ success: true });
+export async function getSession() {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("session")?.value;
+
+  if (!token) return null;
+
+  try {
+    const decoded = jwt.verify(token, SESSION_SECRET) as { userId: string };
+    const user = await prisma.user.findUnique({
+      where: { id: decoded.userId },
+    });
+    return user;
+  } catch {
+    return null;
+  }
 }
