@@ -17,14 +17,14 @@ function DashboardPage() {
 
   // During SSR/build, auth can be null → prevent crash
   if (!auth) {
-    return (
-      <div className="p-6 text-gray-400">
-        Loading dashboard…
-      </div>
-    );
+    return <div className="p-6 text-gray-400">Loading dashboard…</div>;
   }
 
-  const { user, refresh } = auth;
+  // Explicitly assert the type so TS knows refresh is callable
+  const { user, refresh } = auth as {
+    user: any;
+    refresh: () => Promise<void>;
+  };
 
   async function upgradeToPremium() {
     await fetch("/api/user/upgrade", { method: "POST" });
