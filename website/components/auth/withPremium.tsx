@@ -1,13 +1,20 @@
 "use client";
 
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
 import { useAuth } from "./AuthProvider";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export function withPremium(Component: any) {
   return function PremiumProtectedPage(props: any) {
-    const { user, loading } = useAuth();
+    const auth = useAuth();
     const router = useRouter();
+
+    // Null-safe: useAuth() kan null zijn tijdens SSR/build
+    if (!auth) {
+      return <div className="p-6 text-gray-400">Loading…</div>;
+    }
+
+    const { user, loading } = auth;
 
     useEffect(() => {
       if (!loading && user && user.profileType !== "PREMIUM") {
@@ -16,7 +23,7 @@ export function withPremium(Component: any) {
     }, [loading, user, router]);
 
     if (loading || !user) {
-      return <p className="p-6">Loading…</p>;
+      return <div className="p-6 text-gray-400">Checking premium access…</div>;
     }
 
     return <Component {...props} />;
