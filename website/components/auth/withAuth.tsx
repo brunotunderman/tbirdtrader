@@ -1,13 +1,19 @@
 "use client";
 
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
 import { useAuth } from "./AuthProvider";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 export function withAuth(Component: any) {
   return function ProtectedPage(props: any) {
-    const { user, loading } = useAuth();
+    const auth = useAuth();
     const router = useRouter();
+
+    if (!auth) {
+      return null;
+    }
+
+    const { user, loading } = auth;
 
     useEffect(() => {
       if (!loading && !user) {
@@ -16,7 +22,7 @@ export function withAuth(Component: any) {
     }, [loading, user, router]);
 
     if (loading || !user) {
-      return <p className="p-6">Loading…</p>;
+      return <div className="p-6 text-gray-400">Checking authentication…</div>;
     }
 
     return <Component {...props} />;
