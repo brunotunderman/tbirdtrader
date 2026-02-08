@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import LiveChart from "@/components/LiveChart";
 
 export default function HomePage() {
   return (
@@ -41,7 +42,7 @@ export default function HomePage() {
 
             <p className="max-w-xl text-sm text-[#8b949e] md:text-base">
               For an exchange trader, whether you are in Crypto, ETF's or more traditional assets, it's all about Buy Just After The Low and Sell Just After The High.
-	      The problem is that we humans need to sleep, eat, drink and have fun. And that is where the TbirdTrader comes in. TbirdTrader is an AI driven trade agent, 
+              The problem is that we humans need to sleep, eat, drink and have fun. And that is where the TbirdTrader comes in. TbirdTrader is an AI driven trade agent,
               a bot that is monitoring 24/7 your portfolio assets and automatically executes Buy and Sell transactions at your preferred platform such as Binance, Coinbase, Kraken, etc.
               
               Based on a prediction algorythm that includes RSI, fear and greed sentiment and volatility, backtested by historical data, TbirdTrader will trade at the right moment,
@@ -51,9 +52,12 @@ export default function HomePage() {
             </p>
 
             <div className="flex flex-wrap gap-4">
-              <button className="rounded-md bg-gradient-to-r from-[#1e90ff] to-[#00b4ff] px-6 py-2 text-sm font-medium text-white shadow-lg shadow-[#1e90ff55] hover:opacity-90">
+              <a
+                href="/signup"
+                className="rounded-md bg-gradient-to-r from-[#1e90ff] to-[#00b4ff] px-6 py-2 text-sm font-medium text-white shadow-lg shadow-[#1e90ff55] hover:opacity-90"
+              >
                 Ready to trade with confidence
-              </button>
+              </a>
             </div>
           </div>
 
@@ -156,19 +160,12 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="rounded-xl overflow-hidden border border-[#30363d] bg-[#161b22]">
-            <Image
-              src="/prediction2.png"
-              alt="Prediction Chart Preview"
-              width={1600}
-              height={900}
-              className="w-full h-auto"
-              priority
-            />
+          {/* LIVE CHART */}
+          <div className="rounded-xl overflow-hidden border border-[#30363d] bg-[#161b22] p-4">
+            <LiveChart />
           </div>
         </div>
       </section>
-
       {/* FEATURE SHOWCASE */}
       <section className="border-b border-[#30363d] bg-[#161b22]">
         <div className="mx-auto max-w-6xl flex flex-col gap-10 px-6 py-16 md:py-20">
@@ -269,9 +266,12 @@ export default function HomePage() {
               TbirdTrader.
             </p>
           </div>
-          <button className="rounded-md bg-[#0d1117] px-6 py-2 text-sm font-medium text-white hover:bg-[#161b22]">
+          <a
+            href="/signup"
+            className="rounded-md bg-[#0d1117] px-6 py-2 text-sm font-medium text-white hover:bg-[#161b22]"
+          >
             Get Started
-          </button>
+          </a>
         </div>
       </section>
 

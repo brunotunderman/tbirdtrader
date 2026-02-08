@@ -3,14 +3,14 @@
 import { useState } from "react";
 import Image from "next/image";
 
-export default function LoginPage() {
+export default function SignupPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Login:", { email, password });
-    // Later: echte login API call
+    console.log("Signup:", { email, password });
+    // Later: echte signup API call
   };
 
   return (
@@ -29,7 +29,7 @@ export default function LoginPage() {
         </div>
 
         <h1 className="text-2xl font-semibold mb-6 text-center">
-          Log in to TbirdTrader
+          Create your TbirdTrader account
         </h1>
 
         <form onSubmit={handleSubmit} className="space-y-5">
@@ -59,14 +59,14 @@ export default function LoginPage() {
             type="submit"
             className="w-full rounded-md bg-gradient-to-r from-[#1e90ff] to-[#00b4ff] py-2 text-sm font-medium text-white shadow-lg shadow-[#1e90ff55] hover:opacity-90"
           >
-            Log In
+            Create Account
           </button>
         </form>
 
         <p className="text-xs text-center text-[#8b949e] mt-6">
-          Don’t have an account yet?{" "}
-          <a href="/signup" className="text-[#1e90ff] hover:underline">
-            Sign up
+          Already have an account?{" "}
+          <a href="/login" className="text-[#1e90ff] hover:underline">
+            Log in
           </a>
         </p>
       </div>
