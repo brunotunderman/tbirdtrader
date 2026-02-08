@@ -2,16 +2,29 @@
 
 import { withPremium } from "../../components/auth/withPremium";
 import { useAuth } from "../../components/auth/AuthProvider";
-import BalancesCard from "@/components/dashboard/BalancesCard"; 
-import TradeControls from "@/components/dashboard/TradeControls"; 
-import BotStatus from "@/components/dashboard/BotStatus"; 
-import TradeHistory from "@/components/dashboard/TradeHistory"; 
-import BotLog from "@/components/dashboard/BotLog"; 
-import OpenPositions from "@/components/dashboard/OpenPositions";
-import LiveChart from "@/components/dashboard/LiveChart";
+
+import BalancesCard from "../../components/dashboard/BalancesCard";
+import TradeControls from "../../components/dashboard/TradeControls";
+import BotStatus from "../../components/dashboard/BotStatus";
+import TradeHistory from "../../components/dashboard/TradeHistory";
+import BotLog from "../../components/dashboard/BotLog";
+import OpenPositions from "../../components/dashboard/OpenPositions";
+
+import LiveChart from "../../components/LiveChart";
 
 function DashboardPage() {
-  const { user, refresh } = useAuth();
+  const auth = useAuth();
+
+  // During SSR/build, auth can be null → prevent crash
+  if (!auth) {
+    return (
+      <div className="p-6 text-gray-400">
+        Loading dashboard…
+      </div>
+    );
+  }
+
+  const { user, refresh } = auth;
 
   async function upgradeToPremium() {
     await fetch("/api/user/upgrade", { method: "POST" });
@@ -59,4 +72,3 @@ function DashboardPage() {
 }
 
 export default withPremium(DashboardPage);
-
