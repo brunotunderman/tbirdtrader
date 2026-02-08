@@ -2,7 +2,7 @@
 
 import { withPremium } from "../../components/auth/withPremium";
 import { useAuth } from "../../components/auth/AuthProvider";
-import LiveChart from "../../components/dashboard/LiveChart";
+import LiveChart from "../../components/LiveChart";
 
 function DashboardPage() {
   const { user, refresh } = useAuth();
