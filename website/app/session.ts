@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
-import prisma from "./prisma";
+import prisma from "../lib/prisma";
 
 // The secret used to sign and verify session tokens.
 // Make sure this matches your .env value.
