@@ -10,7 +10,7 @@ export function withAuth(Component: any) {
     const router = useRouter();
 
     if (!auth) {
-      return null;
+      return <div className="p-6 text-gray-400">Loading…</div>;
     }
 
     const { user, loading } = auth;
