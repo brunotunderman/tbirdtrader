@@ -38,10 +38,10 @@ export default function HomePage() {
             </h1>
 
             <p className="max-w-xl text-sm text-[#8b949e] md:text-base">
-              For an exchange trader, whether you are in Crypto, ETF's or more traditional assets,
-              it's all about Buy Just After The Low and Sell Just After The High. Humans need sleep,
-              food and fun — TbirdTrader does not. It monitors your assets 24/7 and executes Buy/Sell
-              transactions automatically on platforms like Binance, Coinbase and Kraken.
+              TbirdTrader is built around a simple reality: financial markets never sleep, but people do. Whether trading crypto, ETFs, or traditional assets, timing and discipline are key to long-term performance. TbirdTrader is an AI-driven trading agent designed to help traders monitor and manage their portfolios 24/7.
+              By integrating with leading trading platforms such as Binance, Coinbase, and Kraken, TbirdTrader continuously analyzes market conditions using predictive models that incorporate technical indicators like RSI, market sentiment signals such as fear and greed indexes, and volatility patterns. These models are trained and backtested using historical market data to support data-driven trading decisions.
+              TbirdTrader automatically executes trades based on user-defined strategies and risk preferences, helping traders respond to market movements even when they are offline. The platform is designed to support clarity, speed, and precision, giving users greater control over their trading strategies while leveraging advanced AI technology.
+              TbirdTrader represents the next generation of digital trading support — combining automation, predictive insights, and intelligent execution to help traders navigate fast-moving markets with confidence and consistency.
             </p>
 
             <div className="flex flex-wrap gap-4">
